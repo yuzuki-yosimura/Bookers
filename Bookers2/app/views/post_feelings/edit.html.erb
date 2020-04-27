@@ -1,0 +1,22 @@
+<h1>aiueo</h1>
+<!-- ヘッダー部分 -->
+ <%= render 'post_feelings/headertemplate'%>
+<!-- ヘッダー部分 -->
+
+<h1>Editing Book</h1>
+
+<%= form_for(@post_feeling) do |b| %>
+  <p>Title</p><%= b.text_field :title %><br>
+  <p>Opinion</p><%= b.text_area  :body%><br>
+  <%= b.submit 'Update Book', class:"btn btn-primary" %><br>
+  <% if @post_feeling.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <p>error!</p>
+    <ul>
+      <% @post_feeling.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% end %>

@@ -1,0 +1,49 @@
+<h1>aiueo</h1>
+<!-- ヘッダー部分 -->
+ <%= render 'post_feelings/headertemplate'%>
+<!-- ヘッダー部分 -->
+
+<div class="container">
+<div class="row">
+
+<!-- サイドバー部分 -->
+<div class="col-lg-3">
+ <%= render 'post_feelings/sidebartemplate', post_feeling: @post_feeling_new, user: current_user %>
+ </div>
+<!-- サイドバー部分 -->
+
+<!-- メイン部分 -->
+<div class="col-lg-9">
+<h2>Book detail</h2>
+<%= flash[:success] %>
+<table class="table table-hover">
+<thead>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th colspan="3"></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><%=link_to  user_path(@post_feeling.user.id) do %>
+      <%=attachment_image_tag @post_feeling.user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "50x50" %><br>
+      <span>
+      <%= link_to @post_feeling.user.name %>
+      </span>
+      <% end %>
+    <td><%=link_to @post_feeling.title, post_feeling_path(@post_feeling.id) %></td>
+    <td><%= @post_feeling.body %></td>
+    <% if current_user == @post_feeling.user %>
+      <td><%=link_to "Edit", edit_post_feeling_path(@post_feeling.id) ,class:"btn btn-success"%></td>
+      <td><%= link_to "Destroy", post_feeling_path(@post_feeling.id), class:"btn btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+    <% end %>
+  </tr>
+</tbody>
+</table>
+</div>
+<!-- メイン部分 -->
+
+</div>
+</div>

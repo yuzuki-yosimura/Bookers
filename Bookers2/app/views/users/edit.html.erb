@@ -1,0 +1,24 @@
+<h1>aiueo</h1>
+<!-- ヘッダー部分 -->
+ <%= render 'post_feelings/headertemplate'%>
+<!-- ヘッダー部分 -->
+
+<h1>User info</h1>
+
+<%= form_for(@user) do |b| %>
+  <p>Name</p><%= b.text_field :name %><br>
+  <p>Image</p><%= b.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %><br>
+  <%= attachment_image_tag @user, :profile_image, class: "img-circle pull-left profile-thumb", fallback: "no_image.jpg", size: "50x50"%><br><br><br>
+  <p>introduction</p><%= b.text_area :introduction %><br>
+  <%= b.submit 'Update User' %><br>
+  <% if @user.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <p>error!</p>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% end %>
