@@ -1,0 +1,23 @@
+<h3>home#top</h3>
+
+<!-- ヘッダー部分 -->
+ <%= render 'post_feelings/headertemplate'%>
+<!-- ヘッダー部分 -->
+
+<!-- ユーザーがログインしているか調べる -->
+<% if user_signed_in? %>
+
+<!-- ユーザーがログインしていた時の処理 -->
+  <h2> Welcome to Bookers! </h2>
+<%= link_to "Log In", user_path(current_user.id), class: "btn btn-info" %><br> <!-- ユーザー画面に移行する -->
+<%= link_to "Sign Up", user_path(current_user.id), class: "btn btn-success" %> <!-- ユーザー画面に移行する -->
+<!-- ユーザーがログインしていた時の処理 -->
+
+
+<% else %>
+  <!-- ユーザーがログインしていなかった時の処理 -->
+  <h2> Welcome to Bookers! </h2>
+  <%= link_to "Log In", new_user_session_path, class: "btn btn-info" %><br> <!-- ログイン画面に移行する -->
+  <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %> <!-- 新規登録画面に移行する -->
+  <!-- ユーザーがログインしていなかった時の処理 -->
+<% end %>

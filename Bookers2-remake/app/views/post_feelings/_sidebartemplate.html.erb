@@ -1,0 +1,48 @@
+<h1>User info</h1>
+
+<%= attachment_image_tag user, :profile_image, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size: "100x100" %><br>
+<table class="table">
+<thead>
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>name</td>
+    <td><%=user.name %></td>
+  </tr><tr>
+    <td>introduction</td>
+    <td><%= user.introduction %></td>
+  </tr>
+</tbody>
+</table>
+
+<%= link_to  edit_user_path(current_user), class: 'btn btn-default btn-block' do
+ %>
+  <i class="glyphicon glyphicon-wrench"></i>
+<% end %>
+
+<h1>New book</h1>
+<%= form_for(post_feeling, url:books_path) do |f| %>
+    <h4>Title</h4>
+    <div class="field row">
+    <%= f.text_field :title, class: "col-xs-12" %>
+    </div>
+    <h4>Opinion</h4>
+    <div class="field row">
+    <%= f.text_area :body, class: "col-xs-12" %><br>
+    </div><br>
+    <%= f.submit 'Create Book', class:"btn btn-primary btn-block" %>
+    <% if @post_feeling.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <p>error!</p>
+      <ul>
+        <% post_feeling.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

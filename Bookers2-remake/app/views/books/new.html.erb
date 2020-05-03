@@ -1,0 +1,24 @@
+<h3>aiueo</h3>
+<!-- ヘッダー部分 -->
+ <%= render 'post_feelings/headertemplate'%>
+<!-- ヘッダー部分 -->
+
+<h2>New book</h2>
+<!-- form_for部分 -->
+<%= form_for(@post_feeling, url:books_path) do |f| %>
+    <h4>Title</h4>
+    <%= f.text_field :title %>
+    <h4>Opinion</h4>
+    <%= f.text_area :body %><br>
+    <%= f.submit 'Create Book' %>
+    <% if @post_feeling.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <p>error!</p>
+      <ul>
+        <% @post_feeling.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
